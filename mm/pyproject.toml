@@ -5,11 +5,11 @@ version = "0.0.1"
 url = "https://example.com/mm"
 license = "BSD license"
 author = 'Veer Singh'
-author_email = "obiwan@veersingh.ca"
+author_email = "veer@example.com"
 
 [tool.briefcase.app.mm]
 formal_name = "mm"
-description = "mental health app for a hackathon"
+description = "m"
 icon = "src/mm/resources/mm"
 sources = ['src/mm']
 requires = []

@@ -1,5 +1,5 @@
 """
-mental health app for a hackathon
+m
 """
 import toga
 from toga.style import Pack
