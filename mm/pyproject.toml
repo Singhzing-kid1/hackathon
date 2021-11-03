@@ -12,7 +12,9 @@ formal_name = "mm"
 description = "m"
 icon = "src/mm/resources/mm"
 sources = ['src/mm']
-requires = []
+requires = [
+"tinydb",
+]
 
 
 [tool.briefcase.app.mm.macOS]
