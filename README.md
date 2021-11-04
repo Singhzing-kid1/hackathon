@@ -26,7 +26,7 @@ An app that gives a mental health check to see how you are feeling. It also incu
    |------------------------------------|
 ```
 
-## Run the source:
+## Run the source code:
 
 ### Windows:
 
