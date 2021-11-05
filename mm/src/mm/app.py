@@ -1,5 +1,5 @@
 """
-m
+Hackathon project
 """
 import toga
 from toga.style import Pack
