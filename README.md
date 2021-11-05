@@ -10,7 +10,7 @@ Projects don't have to be super complicated! Simple projects are perfectly fine 
 
 ## Idea:
 
-An app that gives a mental health check to see how you are feeling. It also inculdes a section for journaling your feelings. There will also be a self-harm abstinence section that will ask you if you have harmed yourself, and will give you points that you can use to redeem something.
+An app that gives a mental health check to see how you are feeling. It also inculdes a section for journaling your feelings. There will also be a self-harm abstinence section that will ask you if you have harmed yourself, and will give you points that you can use to redeem something. If you are just feeling sad it might give you a breathing exercise, but if you have been feeling sad say for the past couple of weeks it would give you a suggestion to connect with other people who are feeling the same way you are. If you report that you are feeling suicidal the app will return the phone numbers for helplines in your area. You also have access to a conect tab, where you can connect with people who are feeling the same as you are in your area.
 
 ## Timeline:
 ```
