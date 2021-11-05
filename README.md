@@ -21,7 +21,7 @@ An app that gives a mental health check to see how you are feeling. It also incu
    | Start of hackathon -- Nov 5 2021   |
    | Starting of coding                 |
    |------------------------------------|
-   | End of hackathon   -- Nov 12 2021  |
+   | End of hackathon   -- Nov 17 2021  |
    | Submission of project              |
    |------------------------------------|
 ```
