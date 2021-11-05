@@ -1,20 +1,18 @@
 [tool.briefcase]
 project_name = "mm"
 bundle = "com.example"
-version = "0.0.1"
-url = "https://example.com/mm"
+version = "0.0.2"
+url = "https://singhzing-kid1.github.io/Hackathon-Docs/"
 license = "BSD license"
 author = 'Veer Singh'
-author_email = "veer@example.com"
+author_email = "obiwan@veersingh.ca"
 
 [tool.briefcase.app.mm]
 formal_name = "mm"
-description = "m"
+description = "Hackathon project"
 icon = "src/mm/resources/mm"
 sources = ['src/mm']
-requires = [
-"tinydb",
-]
+requires = ["tinydb"]
 
 
 [tool.briefcase.app.mm.macOS]

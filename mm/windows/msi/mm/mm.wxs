@@ -23,9 +23,9 @@
         <Icon Id="ProductIcon" SourceFile="mm.ico" />
 
         <Property Id="ARPPRODUCTICON" Value="ProductIcon" />
-        <Property Id="ARPURLINFOABOUT" Value="https://example.com/mm" />
+        <Property Id="ARPURLINFOABOUT" Value="https://singhzing-kid1.github.io/Hackathon-Docs/" />
         
-        <Property Id="ARPCONTACT" Value="veer@example.com" />
+        <Property Id="ARPCONTACT" Value="obiwan@veersingh.ca" />
         
         <Property Id="ARPNOREPAIR" Value="1" />
         <Property Id="ARPNOMODIFY" Value="1" />
@@ -59,7 +59,7 @@
                                 Id="ApplicationShortcut1"
                                 Name="mm"
                                 Icon="ProductIcon"
-                                Description="m"
+                                Description="Hackathon project"
                                 Target="[mm_ROOTDIR]python\pythonw.exe"
                                 WorkingDirectory="mm_ROOTDIR"
                                 Arguments="-m mm" />
