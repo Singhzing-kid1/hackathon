@@ -1,5 +1,2 @@
 tinydb
-toga
-toga_core
-toga_winforms
 briefcase
