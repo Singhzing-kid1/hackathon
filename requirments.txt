@@ -1,2 +1,5 @@
 tinydb
 briefcase
+toga==0.3.0.dev8
+toga_core==0.3.0.dev8
+toga_winforms==0.3.0.dev8
