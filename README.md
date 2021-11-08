@@ -30,4 +30,10 @@ An app that gives a mental health check to see how you are feeling. It also incl
 
 ### Windows:
 
-Go to command prompt an cd over to the Hackathon folder. Then run the command: `Venv\Scripts\activate`. Then cd into the app folder `mm` and run `briefcase run`.
+- Clone the repository
+- cd to the repository on your computer
+- run the command `python -m venv Venv`
+- run the command `Venv\Scripts\activate`
+- run the command `python -m pip install -r requirments.txt`
+- cd into the app folder
+- run the command `briefcase dev`
