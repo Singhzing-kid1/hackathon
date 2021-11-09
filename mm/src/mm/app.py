@@ -18,7 +18,7 @@ class mm(toga.App):
         """
         main_box = toga.OptionContainer()
 
-        section1 = toga.Tree(['Navigate'])
+        section1 = toga.Table(['checkin','journaling'])
         section2 = toga.Tree(['Navigate'])
         section3 = toga.Tree(['Navigate'])
         section4 = toga.Tree(['Navigate'])
