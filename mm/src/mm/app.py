@@ -5,7 +5,6 @@ import toga
 from toga.style import Pack
 from toga.style.pack import COLUMN, ROW
 
-
 class mm(toga.App):
 
     def startup(self):
@@ -35,6 +34,7 @@ class mm(toga.App):
         sec1_box.add(sec1_label)
 
         section1.add(sec1_box)
+
         ######################################################################
         # Section 1 -- Shanza Code Here End
         ######################################################################
@@ -51,8 +51,6 @@ class mm(toga.App):
         sec2_box.add(sec2_label)
 
         section2.add(sec2_box)
-
-
 
         ######################################################################
         # Section 2 -- Rohan Code Here End
@@ -71,8 +69,6 @@ class mm(toga.App):
 
         section3.add(sec3_box)
 
-
-
         ######################################################################
         # Section 3 -- Veer Code Here End
         ######################################################################
@@ -90,16 +86,9 @@ class mm(toga.App):
 
         section4.add(sec4_box)
 
-
-
         ######################################################################
         # Section 4 -- Veer Code Here End
         ######################################################################
-
-
-
-
-
 
         main_box.add('Checkin/journaling', section1)
         main_box.add('hurtmenot', section2)
@@ -109,7 +98,6 @@ class mm(toga.App):
         self.main_window = toga.MainWindow(title=self.formal_name)
         self.main_window.content = main_box
         self.main_window.show()
-
 
 def main():
     return mm()
