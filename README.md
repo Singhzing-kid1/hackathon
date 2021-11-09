@@ -1,4 +1,4 @@
-# Hackathonn
+# Hackathon
 
 ## Hackathon info:
 

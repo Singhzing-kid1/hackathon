@@ -16,7 +16,18 @@ class mm(toga.App):
         We then create a main window (with a name matching the app), and
         show the main window.
         """
-        main_box = toga.Box()
+        main_box = toga.OptionContainer()
+
+        section1 = toga.Tree(['Navigate'])
+        section2 = toga.Tree(['Navigate'])
+        section3 = toga.Tree(['Navigate'])
+        section4 = toga.Tree(['Navigate'])
+
+
+        main_box.add('Checkin/journaling', section1)
+        main_box.add('hurtmenot', section2)
+        main_box.add('connect', section3)
+        main_box.add('helplines', section4)
 
         self.main_window = toga.MainWindow(title=self.formal_name)
         self.main_window.content = main_box
