@@ -83,12 +83,17 @@ class mm(toga.App):
 
         abWideMentalHealthPhone = toga.Label(
             'Alberta Wide Mental Health Helpline: 1-877-303-2642',
-            style=Pack(padding=(1, 5))
+            style=Pack(padding=(0, 5))
         )
 
         yycMentalHealthHelpline = toga.Label(
             'Calgary Mental Health Helpline: 1-877-303-2642',
-            style=Pack(padding=(2, 5))
+            style=Pack(padding=(0, 5))
+        )
+
+        yycsuicidePreventionHotline = toga.Label(
+            'Calgary Suicide Hotline: 833-456-4566',
+            style=Pack(padding=(0, 5))
         )
 
 
@@ -96,6 +101,7 @@ class mm(toga.App):
         sec4_box.add(kidsHelpPhone)
         sec4_box.add(abWideMentalHealthPhone)
         sec4_box.add(yycMentalHealthHelpline)
+        sec4_box.add(yycsuicidePreventionHotline)
 
         section4.add(sec4_box)
 
