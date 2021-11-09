@@ -4,6 +4,11 @@ hackathon project
 import toga
 from toga.style import Pack
 from toga.style.pack import COLUMN, ROW
+from tinydb import TinyDB, Query
+import json
+
+db = TinyDB('src/mm/resources/database.json')
+User = Query()
 
 class mm(toga.App):
 
@@ -59,13 +64,21 @@ class mm(toga.App):
         ######################################################################
         # Section 3 -- Veer Code Here Start
         ######################################################################
-        sec3_label = toga.Label(
-            'sec3',
-            style=Pack(padding=(0, 5))
-        )
+        connect = db.table('connect')
+        connect.insert({'title':'content'})
+        print(connect.all())
+
+        connectJson = connect.all()[0]
+
+        titles = connectJson.keys()
+        content = connectJson.values()
+
+        title, post = connectPosts(titles, content)
+
+
 
         sec3_box = toga.Box(style=Pack(direction=ROW, padding=5))
-        sec3_box.add(sec3_label)
+        sec3_box.add(posts)
 
         section3.add(sec3_box)
 
@@ -117,6 +130,24 @@ class mm(toga.App):
         self.main_window = toga.MainWindow(title=self.formal_name)
         self.main_window.content = main_box
         self.main_window.show()
+
+class connectPosts:
+    def __init__(self, title, content):
+        self.title = title
+        self.content = content
+
+    def journalEntry(self):
+        postTitle = toga.Label(
+            self.title,
+            style=Pack(padding=(0, 5))
+        )
+        postContent = toga.Label(
+            self.content,
+            style=Pack(padding=(0, 5))
+        )
+
+        return postTitle, postContent
+
 
 def main():
     return mm()
