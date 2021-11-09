@@ -76,13 +76,26 @@ class mm(toga.App):
         ######################################################################
         # Section 4 -- Veer Code Here Start
         ######################################################################
-        sec4_label = toga.Label(
-            'sec4',
+        kidsHelpPhone = toga.Label(
+            'Kids Help Phone: 1-800-668-6868',
             style=Pack(padding=(0, 5))
         )
 
-        sec4_box = toga.Box(style=Pack(direction=ROW, padding=5))
-        sec4_box.add(sec4_label)
+        abWideMentalHealthPhone = toga.Label(
+            'Alberta Wide Mental Health Helpline: 1-877-303-2642',
+            style=Pack(padding=(1, 5))
+        )
+
+        yycMentalHealthHelpline = toga.Label(
+            'Calgary Mental Health Helpline: 1-877-303-2642',
+            style=Pack(padding=(2, 5))
+        )
+
+
+        sec4_box = toga.Box(style=Pack(direction=COLUMN, padding=5))
+        sec4_box.add(kidsHelpPhone)
+        sec4_box.add(abWideMentalHealthPhone)
+        sec4_box.add(yycMentalHealthHelpline)
 
         section4.add(sec4_box)
 
