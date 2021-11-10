@@ -29,7 +29,14 @@ class mm(toga.App):
             'sec1',
             style=Pack(padding=(0, 5))
         )
+  date = input("Date(M/D/Y): ")
+        print('Date: ' + date)
 
+#the lines for writing down your feelings?
+        while i <= 20:
+            print("______________________________________")
+            i = i + 1
+            
         sec1_box = toga.Box(style=Pack(direction=ROW, padding=5))
         sec1_box.add(sec1_label)
 
