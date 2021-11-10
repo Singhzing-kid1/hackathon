@@ -10,6 +10,24 @@ import json
 db = TinyDB('src/mm/resources/database.json')
 User = Query()
 
+##############################################################################
+#Function Definition Start
+##############################################################################
+
+def connectPostsList(posts):
+    postDict = {}
+    for i in posts:
+        postDict[str(i.keys())] = i.values()
+    return postDict
+
+##############################################################################
+#Function Definition End
+##############################################################################
+
+##############################################################################
+#App Class Start
+##############################################################################
+
 class mm(toga.App):
 
     def startup(self):
@@ -65,23 +83,16 @@ class mm(toga.App):
         # Section 3 -- Veer Code Here Start
         ######################################################################
         connect = db.table('connect')
-        connect.insert({'title':'content'})
-        print(connect.all())
 
-        connectJson = connect.all()[0]
+        posts = connectPostsList(connect.all())
 
-        titles = connectJson.keys()
-        content = connectJson.values()
-
-        title, post = connectPosts(titles, content)
+        print(posts)
 
 
 
         sec3_box = toga.Box(style=Pack(direction=ROW, padding=5))
-        sec3_box.add(posts)
 
         section3.add(sec3_box)
-
         ######################################################################
         # Section 3 -- Veer Code Here End
         ######################################################################
@@ -131,6 +142,14 @@ class mm(toga.App):
         self.main_window.content = main_box
         self.main_window.show()
 
+##############################################################################
+#App Class End
+##############################################################################
+
+##############################################################################
+#Other Classes start
+##############################################################################
+
 class connectPosts:
     def __init__(self, title, content):
         self.title = title
@@ -146,7 +165,11 @@ class connectPosts:
             style=Pack(padding=(0, 5))
         )
 
-        return postTitle, postContent
+        return [postTitle, postContent]
+
+##############################################################################
+#Other Classes End
+##############################################################################
 
 
 def main():
