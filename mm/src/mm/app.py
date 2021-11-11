@@ -116,7 +116,7 @@ class mm(toga.App):
         )
 
         yycsuicidePreventionHotline = toga.Label(
-            'Calgary Suicide Hotline: 833-456-4566',
+            'Calgary Suicide Prevention Hotline: 833-456-4566',
             style=Pack(padding=(0, 5))
         )
 
