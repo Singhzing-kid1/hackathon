@@ -4,6 +4,29 @@ hackathon project
 import toga
 from toga.style import Pack
 from toga.style.pack import COLUMN, ROW
+from tinydb import TinyDB, Query
+import json
+
+db = TinyDB('src/mm/resources/database.json')
+User = Query()
+
+##############################################################################
+#Function Definition Start
+##############################################################################
+
+def connectPostsList(posts):
+    postDict = {}
+    for i in posts:
+        postDict[str(i.keys())] = i.values()
+    return postDict
+
+##############################################################################
+#Function Definition End
+##############################################################################
+
+##############################################################################
+#App Class Start
+##############################################################################
 
 class mm(toga.App):
 
@@ -66,16 +89,17 @@ class mm(toga.App):
         ######################################################################
         # Section 3 -- Veer Code Here Start
         ######################################################################
-        sec3_label = toga.Label(
-            'sec3',
-            style=Pack(padding=(0, 5))
-        )
+        connect = db.table('connect')
+
+        posts = connectPostsList(connect.all())
+
+        print(posts)
+
+
 
         sec3_box = toga.Box(style=Pack(direction=ROW, padding=5))
-        sec3_box.add(sec3_label)
 
         section3.add(sec3_box)
-
         ######################################################################
         # Section 3 -- Veer Code Here End
         ######################################################################
@@ -83,13 +107,32 @@ class mm(toga.App):
         ######################################################################
         # Section 4 -- Veer Code Here Start
         ######################################################################
-        sec4_label = toga.Label(
-            'sec4',
+        kidsHelpPhone = toga.Label(
+            'Kids Help Phone: 1-800-668-6868',
             style=Pack(padding=(0, 5))
         )
 
-        sec4_box = toga.Box(style=Pack(direction=ROW, padding=5))
-        sec4_box.add(sec4_label)
+        abWideMentalHealthPhone = toga.Label(
+            'Alberta Wide Mental Health Helpline: 1-877-303-2642',
+            style=Pack(padding=(0, 5))
+        )
+
+        yycMentalHealthHelpline = toga.Label(
+            'Calgary Mental Health Helpline: 1-877-303-2642',
+            style=Pack(padding=(0, 5))
+        )
+
+        yycsuicidePreventionHotline = toga.Label(
+            'Calgary Suicide Prevention Hotline: 833-456-4566',
+            style=Pack(padding=(0, 5))
+        )
+
+
+        sec4_box = toga.Box(style=Pack(direction=COLUMN, padding=5))
+        sec4_box.add(kidsHelpPhone)
+        sec4_box.add(abWideMentalHealthPhone)
+        sec4_box.add(yycMentalHealthHelpline)
+        sec4_box.add(yycsuicidePreventionHotline)
 
         section4.add(sec4_box)
 
@@ -105,6 +148,36 @@ class mm(toga.App):
         self.main_window = toga.MainWindow(title=self.formal_name)
         self.main_window.content = main_box
         self.main_window.show()
+
+##############################################################################
+#App Class End
+##############################################################################
+
+##############################################################################
+#Other Classes start
+##############################################################################
+
+class connectPosts:
+    def __init__(self, title, content):
+        self.title = title
+        self.content = content
+
+    def journalEntry(self):
+        postTitle = toga.Label(
+            self.title,
+            style=Pack(padding=(0, 5))
+        )
+        postContent = toga.Label(
+            self.content,
+            style=Pack(padding=(0, 5))
+        )
+
+        return [postTitle, postContent]
+
+##############################################################################
+#Other Classes End
+##############################################################################
+
 
 def main():
     return mm()
