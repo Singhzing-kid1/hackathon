@@ -5,7 +5,6 @@ import toga
 from toga.style import Pack
 from toga.style.pack import COLUMN, ROW
 from tinydb import TinyDB, Query
-import json
 
 db = TinyDB('src/mm/resources/database.json')
 User = Query()
@@ -15,10 +14,19 @@ User = Query()
 ##############################################################################
 
 def connectPostsList(posts):
-    postDict = {}
+    postKeys = []
+    postValues = []
     for i in posts:
-        postDict[str(i.keys())] = i.values()
-    return postDict
+        for key in i.keys():
+            postKeys.append(key)
+
+        for value in i.values():
+            postValues.append(value)
+
+    print(postKeys)
+    print(postValues)
+
+    return postKeys, postValues
 
 ##############################################################################
 #Function Definition End
@@ -52,6 +60,13 @@ class mm(toga.App):
             'sec1',
             style=Pack(padding=(0, 5))
         )
+        #ate = input("Date(M/D/Y): ")
+        #print('Date: ' + date)
+
+        #the lines for writing down your feelings?
+        #while i <= 20:
+            #print("______________________________________")
+            #i = i + 1
 
         sec1_box = toga.Box(style=Pack(direction=ROW, padding=5))
         sec1_box.add(sec1_label)
@@ -84,13 +99,21 @@ class mm(toga.App):
         ######################################################################
         connect = db.table('connect')
 
-        posts = connectPostsList(connect.all())
-
-        print(posts)
+        titles, content = connectPostsList(connect.all())
 
 
+        print(titles)
+        print(content)
 
-        sec3_box = toga.Box(style=Pack(direction=ROW, padding=5))
+        sec3_box = toga.Box(style=Pack(direction=COLUMN, padding=5))
+
+        for a, b in enumerate(titles):
+            postClass = connectPosts(titles[a], content[a])
+
+            postTitle, postContent = postClass.journalEntry()
+
+            sec3_box.add(postTitle)
+            sec3_box.add(postContent)
 
         section3.add(sec3_box)
         ######################################################################
