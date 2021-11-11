@@ -56,20 +56,18 @@ class mm(toga.App):
         ######################################################################
         # Section 1 -- Shanza Code Here Start
         ######################################################################
-        sec1_label = toga.Label(
-            'sec1',
-            style=Pack(padding=(0, 5))
-        )
-        #ate = input("Date(M/D/Y): ")
-        #print('Date: ' + date)
+        date = toga.TextInput(style=Pack(padding=(0, 2)), initial='Date: ', placeholder='Date: ', readonly=False)
 
-        #the lines for writing down your feelings?
-        #while i <= 20:
-            #print("______________________________________")
-            #i = i + 1
+        diary_writing = toga.MultilineTextInput(style=Pack(padding=(20, 5)), readonly=False)
 
-        sec1_box = toga.Box(style=Pack(direction=ROW, padding=5))
-        sec1_box.add(sec1_label)
+        overall = toga.NumberInput(min_value=0, max_value=10)
+
+
+        sec1_box = toga.Box(style=Pack(direction=COLUMN, padding=5))
+
+        sec1_box.add(date)
+        sec1_box.add(diary_writing)
+        sec1_box.add(overall)
 
         section1.add(sec1_box)
 
