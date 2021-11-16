@@ -101,15 +101,34 @@ class mm(toga.App):
         ######################################################################
         # Section 2 -- Rohan Code Here Start
         ######################################################################
-        sec2_label = toga.Label(
-            'sec2',
-            style=Pack(padding=(0, 5))
+        # if no, next question: had any thoughts of self harm? -yes, no. if yes/no, 'how do you feel right now' - the same/worse/better. once done say "Thank you for doing your daily check. Sometimes things may seem tough at times, but they will eventually get better, I promise! In the mean time, connect.. or want to call helpline.."
+        # if yes: 'what form of self harm' - physical pain/starvation/excessive exercise/poisioning/others. for any: 'are you proud of your self-harm?' - yes, i deserve/wanted it / no,i wish i didn't. for any: 'does someone know about this?" - yes/no. for any: 'how are you feeling right now?' -the same/worse/better. once done, say : Thank you very much for doing your daily check! Always remember that you are special and of worth! u dont deserve pain, talk to someone close or connnect with people here or call helpline'
+        #after 3 days of no self harm, reward 5 points. after 25 points total, you win prize
+        question1_prompt = toga.Label(
+            'Have you committed any acts of self harm today?',
+            style=Pack(padding=(10, 0))
         )
 
-        sec2_box = toga.Box(style=Pack(direction=ROW, padding=5))
-        sec2_box.add(sec2_label)
+       #question1.add(question1_prompt)
 
+        question1_yes = toga.Button(
+            'Yes',
+        #  on_press= .clear(),
+            style=Pack(padding=(20, 10))
+        )
+
+        question1_no = toga.Button(
+            'No',
+            #  on_press= .clear(),
+            style=Pack(padding=(40, 10))
+        )
+       #question1.add(question1_no)
+
+        sec2_box = toga.Box(style=Pack(direction=COLUMN, padding=5))
         section2.add(sec2_box)
+        sec2_box.add(question1_prompt)
+        sec2_box.add(question1_yes)
+        sec2_box.add(question1_no)
 
         ######################################################################
         # Section 2 -- Rohan Code Here End
