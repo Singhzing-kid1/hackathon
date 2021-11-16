@@ -109,8 +109,6 @@ class mm(toga.App):
             style=Pack(padding=(10, 0))
         )
 
-       #question1.add(question1_prompt)
-
         question1_yes = toga.Button(
             'Yes',
         #  on_press= .clear(),
@@ -122,8 +120,7 @@ class mm(toga.App):
             #  on_press= .clear(),
             style=Pack(padding=(40, 10))
         )
-       #question1.add(question1_no)
-
+        
         sec2_box = toga.Box(style=Pack(direction=COLUMN, padding=5))
         section2.add(sec2_box)
         sec2_box.add(question1_prompt)
