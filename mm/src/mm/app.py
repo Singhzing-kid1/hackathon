@@ -24,10 +24,29 @@ def connectPostsList(posts):
         for value in i.values():
             postValues.append(value)
 
-    print(postKeys)
-    print(postValues)
-
     return postKeys, postValues
+
+def journalEntriesList(entries):
+    journalKeys = []
+    journalValues = []
+    journalContent = []
+    journalOverall = []
+
+    for i in entries:
+        for key in i.keys():
+            journalKeys.append(key)
+
+        for value in i.values():
+            journalValues.append(value)
+
+    for a in journalValues:
+        journalContent.append(a['content'])
+        journalOverall.append(a['overall'])
+
+    journalKeys.reverse()
+    journalContent.reverse()
+    journalOverall.reverse()
+    return journalKeys, journalContent, journalOverall
 
 ##############################################################################
 #Function Definition End
@@ -49,7 +68,11 @@ class mm(toga.App):
         """
         main_box = toga.OptionContainer()
 
-        section1 = toga.Box(style=Pack(direction=COLUMN))
+        section1Main = toga.SplitContainer()
+
+        sec1_box2 = toga.Box(style=Pack(direction=COLUMN, padding=5))
+        section1R = toga.Box(style=Pack(direction=COLUMN))
+        section1L = toga.ScrollContainer(content=sec1_box2)
         section2 = toga.Box(style=Pack(direction=COLUMN))
         section3 = toga.Box(style=Pack(direction=COLUMN))
         section4 = toga.Box(style=Pack(direction=COLUMN))
@@ -57,42 +80,33 @@ class mm(toga.App):
         ######################################################################
         # Section 1 -- Shanza Code Here Start
         ######################################################################
+        self.sec1_box = toga.Box(style=Pack(direction=COLUMN, padding=5))
 
+        journal = db.table('journal')
 
-        # some suggestions. because the date of the journal entry is going to be the day of
-        # then we can replace date with today = date.today()
+        titles, content, overall = journalEntriesList(journal.all())
 
-        #date = toga.TextInput(style=Pack(padding=(0, 2)), initial='Date: ', placeholder='Date: ', readonly=False)
-        self.today = date.today()
+        print(titles)
+        print(content)
+        print(overall)
 
-
-        self.diary_writing = toga.MultilineTextInput(style=Pack(padding=(20, 5)), initial='Enter your thoughts and feelings here', placeholder='Enter your thoughts and feelings here', readonly=False)
-
-        self.overall = toga.NumberInput(min_value=0, max_value=10)
-        overallLabel = toga.Label(
-            'Overall feeling 1 - 10 scale:',
-            style=Pack(padding=(5, 0))
-        )
-
-        overallBox = toga.Box(style=Pack(direction=ROW, padding=5))
-
-        overallBox.add(overallLabel)
-        overallBox.add(self.overall)
-
-        enter = toga.Button(
-            'Enter',
-            on_press=self.newJournalEntry,
+        newEntryButton = toga.Button(
+            'New Entry',
+            on_press=self.setJournalAdder,
             style=Pack(padding=5)
         )
 
-        sec1_box = toga.Box(style=Pack(direction=COLUMN, padding=5))
+        sec1_box2.add(newEntryButton)
 
-        #sec1_box.add(date)
-        sec1_box.add(self.diary_writing)
-        sec1_box.add(overallBox)
-        sec1_box.add(enter)
+        for a,b in enumerate(titles):
+            journalClass = journalEntries(titles[a], self.displayJournalEntry)
 
-        section1.add(sec1_box)
+            titles[a] = journalClass.journalEntry()
+
+            sec1_box2.add(titles[a])
+
+        section1R.add(self.sec1_box)
+
 
         ######################################################################
         # Section 1 -- Shanza Code Here End
@@ -120,7 +134,7 @@ class mm(toga.App):
             #  on_press= .clear(),
             style=Pack(padding=(40, 10))
         )
-        
+
         sec2_box = toga.Box(style=Pack(direction=COLUMN, padding=5))
         section2.add(sec2_box)
         sec2_box.add(question1_prompt)
@@ -147,7 +161,7 @@ class mm(toga.App):
         for a, b in enumerate(titles):
             postClass = connectPosts(titles[a], content[a])
 
-            postTitle, postContent = postClass.journalEntry()
+            postTitle, postContent = postClass.connectPost()
 
             sec3_box.add(postTitle)
             sec3_box.add(postContent)
@@ -193,7 +207,9 @@ class mm(toga.App):
         # Section 4 -- Veer Code Here End
         ######################################################################
 
-        main_box.add('Checkin/journaling', section1)
+        section1Main.content = [section1L, section1R]
+
+        main_box.add('Checkin/journaling', section1Main)
         main_box.add('hurtmenot', section2)
         main_box.add('connect', section3)
         main_box.add('helplines', section4)
@@ -205,9 +221,42 @@ class mm(toga.App):
     def newJournalEntry(self, widget):
         journal = db.table('journal')
         journal.insert({str(self.today) : {'content':self.diary_writing.value, 'overall':str(self.overall.value)}})
-        self.diary_writing.clear()
-        self.overall.refresh()
+        self.sec1_box.remove(self.diary_writing)
+        self.sec1_box.remove(self.overallBox)
+        self.sec1_box.remove(self.enter)
 
+
+    def setJournalAdder(self, widget):
+        self.today = date.today()
+
+        self.diary_writing = toga.MultilineTextInput(style=Pack(padding=(20, 5)), initial='Enter your thoughts and feelings here', placeholder='Enter your thoughts and feelings here', readonly=False)
+
+        self.overall = toga.NumberInput(min_value=0, max_value=10)
+        overallLabel = toga.Label(
+            'Overall feeling 1 - 10 scale:',
+            style=Pack(padding=(5, 0))
+        )
+
+        self.overallBox = toga.Box(style=Pack(direction=ROW, padding=5))
+
+        self.overallBox.add(overallLabel)
+        self.overallBox.add(self.overall)
+
+        self.enter = toga.Button(
+            'Enter',
+            on_press=self.newJournalEntry,
+            style=Pack(padding=5)
+        )
+
+
+
+        #sec1_box.add(date)
+        self.sec1_box.add(self.diary_writing)
+        self.sec1_box.add(self.overallBox)
+        self.sec1_box.add(self.enter)
+
+    def displayJournalEntry(self, widget):
+        pass
 ##############################################################################
 #App Class End
 ##############################################################################
@@ -221,7 +270,7 @@ class connectPosts:
         self.title = title
         self.content = content
 
-    def journalEntry(self):
+    def connectPost(self):
         postTitle = toga.Label(
             self.title,
             style=Pack(padding=(0, 5))
@@ -232,6 +281,20 @@ class connectPosts:
         )
 
         return [postTitle, postContent]
+
+class journalEntries:
+    def __init__(self, text, onpress):
+        self.text = text
+        self.onpress = onpress
+
+    def journalEntry(self):
+        entryButton = toga.Button(
+            self.text,
+            on_press=self.onpress,
+            style=Pack(padding=5)
+        )
+
+        return entryButton
 
 ##############################################################################
 #Other Classes End
