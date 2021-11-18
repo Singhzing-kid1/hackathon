@@ -31,6 +31,7 @@ def journalEntriesList(entries):
     journalValues = []
     journalContent = []
     journalOverall = []
+    journalDate = []
 
     for i in entries:
         for key in i.keys():
@@ -42,11 +43,13 @@ def journalEntriesList(entries):
     for a in journalValues:
         journalContent.append(a['content'])
         journalOverall.append(a['overall'])
+        journalDate.append(a['date'])
 
     journalKeys.reverse()
     journalContent.reverse()
     journalOverall.reverse()
-    return journalKeys, journalContent, journalOverall
+    journalDate.reverse()
+    return journalKeys, journalContent, journalOverall, journalDate
 
 ##############################################################################
 #Function Definition End
@@ -84,7 +87,7 @@ class mm(toga.App):
 
         journal = db.table('journal')
 
-        self.titles, self.content, self.overall = journalEntriesList(journal.all())
+        self.titles, self.content, self.overall, self.journalDate = journalEntriesList(journal.all())
 
         self.openedJournalEAdder = False
         self.openedJournalEntry = False
@@ -227,10 +230,11 @@ class mm(toga.App):
 
     def newJournalEntry(self, widget):
         journal = db.table('journal')
-        journal.insert({str(self.today) : {'content':self.diary_writing.value, 'overall':str(self.overall.value)}})
+        journal.insert({self.title.value : {'content':self.diary_writing.value, 'overall':str(self.overall.value),'date':str(self.today)}})
         self.sec1_box.remove(self.diary_writing)
         self.sec1_box.remove(self.overallBox)
         self.sec1_box.remove(self.enter)
+        self.sec1_box.remove(self.title)
         self.openedJournalEAdder = False
 
 
@@ -239,11 +243,14 @@ class mm(toga.App):
             self.sec1_box.remove(self.titleLabel)
             self.sec1_box.remove(self.contentLabel)
             self.sec1_box.remove(self.overallLabel)
+            self.sec1_box.remove(self.dateLabel)
             self.openedJournalEntry = False
 
         self.today = date.today()
 
-        self.diary_writing = toga.MultilineTextInput(style=Pack(padding=(20, 5)), initial='Enter your thoughts and feelings here', placeholder='Enter your thoughts and feelings here', readonly=False)
+        self.title = toga.TextInput(style=Pack(padding=(20, 5)), placeholder='Enter a creative title for you journal entry', readonly=False)
+
+        self.diary_writing = toga.MultilineTextInput(style=Pack(padding=(20, 20)), initial='Enter your thoughts and feelings here', placeholder='Enter your thoughts and feelings here', readonly=False)
 
         self.overall = toga.NumberInput(min_value=0, max_value=10)
         overallLabel = toga.Label(
@@ -265,6 +272,7 @@ class mm(toga.App):
 
 
         #sec1_box.add(date)
+        self.sec1_box.add(self.title)
         self.sec1_box.add(self.diary_writing)
         self.sec1_box.add(self.overallBox)
         self.sec1_box.add(self.enter)
@@ -276,12 +284,14 @@ class mm(toga.App):
             self.sec1_box.remove(self.diary_writing)
             self.sec1_box.remove(self.overallBox)
             self.sec1_box.remove(self.enter)
+            self.sec1_box.remove(self.title)
             self.openedJournalEAdder = False
 
         if self.openedJournalEntry == True:
             self.sec1_box.remove(self.titleLabel)
             self.sec1_box.remove(self.contentLabel)
             self.sec1_box.remove(self.overallLabel)
+            self.sec1_box.remove(self.dateLabel)
             self.openedJournalEntry = False
 
         label = ''
@@ -302,17 +312,23 @@ class mm(toga.App):
             style=Pack(padding=5)
         )
 
+        self.dateLabel = toga.Label(
+            'Date: ' + self.journalDate[num],
+            style=Pack(padding=5)
+        )
+
         self.contentLabel = toga.Label(
             self.content[num],
             style=Pack(padding=5)
         )
 
         self.overallLabel = toga.Label(
-            self.overall[num],
+            'Overall Feeling: ' + self.overall[num],
             style=Pack(padding=5)
         )
 
         self.sec1_box.add(self.titleLabel)
+        self.sec1_box.add(self.dateLabel)
         self.sec1_box.add(self.contentLabel)
         self.sec1_box.add(self.overallLabel)
         self.openedJournalEntry = True
