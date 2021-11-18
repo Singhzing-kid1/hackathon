@@ -125,7 +125,7 @@ class mm(toga.App):
         ######################################################################
         # Section 2 -- Rohan Code Here Start
         ######################################################################
-      sec2_box = toga.Box(style=Pack(direction=COLUMN, padding=5))
+        sec2_box = toga.Box(style=Pack(direction=COLUMN, padding=5))
         content = toga.WebView()
         container = toga.ScrollContainer(content=content, horizontal=False)
         container.vertical = True
