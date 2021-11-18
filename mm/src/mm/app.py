@@ -87,7 +87,7 @@ class mm(toga.App):
 
         journal = db.table('journal')
 
-        self.titles, self.content, self.overall, self.journalDate = journalEntriesList(journal.all())
+        self.titles, self.content, self.overallList, self.journalDate = journalEntriesList(journal.all())
 
         self.openedJournalEAdder = False
         self.openedJournalEntry = False
@@ -125,7 +125,7 @@ class mm(toga.App):
         ######################################################################
         # Section 2 -- Rohan Code Here Start
         ######################################################################
-      sec2_box = toga.Box(style=Pack(direction=COLUMN, padding=5))
+        sec2_box = toga.Box(style=Pack(direction=COLUMN, padding=5))
         content = toga.WebView()
         container = toga.ScrollContainer(content=content, horizontal=False)
         container.vertical = True
@@ -434,7 +434,7 @@ class mm(toga.App):
         )
 
         self.overallLabel = toga.Label(
-            'Overall Feeling: ' + self.overall[num],
+            'Overall Feeling: ' + self.overallList[num],
             style=Pack(padding=5)
         )
 
