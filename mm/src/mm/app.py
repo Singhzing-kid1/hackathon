@@ -101,9 +101,9 @@ class mm(toga.App):
         for a,b in enumerate(titles):
             journalClass = journalEntries(titles[a], self.displayJournalEntry)
 
-            titles[a] = journalClass.journalEntry()
+            self.journalButton = journalClass.journalEntry()
 
-            sec1_box2.add(titles[a])
+            sec1_box2.add(self.journalButton)
 
         section1R.add(self.sec1_box)
 
@@ -256,7 +256,7 @@ class mm(toga.App):
         self.sec1_box.add(self.enter)
 
     def displayJournalEntry(self, widget):
-        pass
+        print(self.journalButton.label)
 ##############################################################################
 #App Class End
 ##############################################################################
