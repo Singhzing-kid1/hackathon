@@ -1,7 +1,7 @@
 [tool.briefcase]
 project_name = "mm"
 bundle = "com.example"
-version = "0.0.1"
+version = "1.0.0"
 url = "https://example.com/mm"
 license = "BSD license"
 author = 'Veer Singh'

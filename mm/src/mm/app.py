@@ -73,9 +73,9 @@ class mm(toga.App):
 
         section1Main = toga.SplitContainer()
 
-        sec1_box2 = toga.Box(style=Pack(direction=COLUMN, padding=5))
+        self.sec1_box2 = toga.Box(style=Pack(direction=COLUMN, padding=5))
         section1R = toga.Box(style=Pack(direction=COLUMN))
-        section1L = toga.ScrollContainer(content=sec1_box2)
+        section1L = toga.ScrollContainer(content=self.sec1_box2)
         section2 = toga.Box(style=Pack(direction=COLUMN))
         section3 = toga.Box(style=Pack(direction=COLUMN))
         section4 = toga.Box(style=Pack(direction=COLUMN))
@@ -83,18 +83,13 @@ class mm(toga.App):
         ######################################################################
         # Section 1 -- Shanza Code Here Start
         ######################################################################
-        self.sec1_box = toga.Box(style=Pack(direction=COLUMN, padding=5))
-
-        journal = db.table('journal')
-
-        self.titles, self.content, self.overallList, self.journalDate = journalEntriesList(journal.all())
-
         self.openedJournalEAdder = False
         self.openedJournalEntry = False
+        self.onStartup = True
+        self.journalButtons = []
 
-        #print(titles)
-        #print(content)
-        #print(overall)
+        self.sec1_box = toga.Box(style=Pack(direction=COLUMN, padding=5))
+        self.journal = db.table('journal')
 
         newEntryButton = toga.Button(
             'New Entry',
@@ -102,18 +97,26 @@ class mm(toga.App):
             style=Pack(padding=5)
         )
 
-        sec1_box2.add(newEntryButton)
-        self.journalButtons = []
-
-        for a,b in enumerate(self.titles):
-            journalClass = journalEntries(self.titles[a], self.displayJournalEntry)
+        self.sec1_box2.add(newEntryButton)
 
 
-            self.journalButtons.append(journalClass.journalEntry())
 
-        for i in self.journalButtons:
-            print(i)
-            sec1_box2.add(i)
+
+        if self.onStartup == True:
+
+
+            self.titles, self.content, self.overallList, self.journalDate = journalEntriesList(self.journal.all())
+
+            for a,b in enumerate(self.titles):
+                journalClass = journalEntries(self.titles[a], self.displayJournalEntry)
+
+
+                self.journalButtons.append(journalClass.journalEntry())
+
+            for i in self.journalButtons:
+                self.sec1_box2.add(i)
+
+            self.onStartup == False
 
         section1R.add(self.sec1_box)
 
@@ -274,9 +277,6 @@ class mm(toga.App):
         titles, content = connectPostsList(connect.all())
 
 
-        print(titles)
-        print(content)
-
         sec3_box = toga.Box(style=Pack(direction=COLUMN, padding=5))
 
         for a, b in enumerate(titles):
@@ -346,6 +346,21 @@ class mm(toga.App):
         self.sec1_box.remove(self.overallBox)
         self.sec1_box.remove(self.enter)
         self.sec1_box.remove(self.title)
+
+        self.titles, self.content, self.overallList, self.journalDate = journalEntriesList(self.journal.all())
+        for i in self.journalButtons:
+            self.sec1_box2.remove(i)
+            self.journalButtons = []
+
+        for a,b in enumerate(self.titles):
+            journalClass = journalEntries(self.titles[a], self.displayJournalEntry)
+
+
+            self.journalButtons.append(journalClass.journalEntry())
+
+        for i in self.journalButtons:
+            self.sec1_box2.add(i)
+
         self.openedJournalEAdder = False
 
 
@@ -390,7 +405,6 @@ class mm(toga.App):
         self.openedJournalEAdder = True
 
     def displayJournalEntry(self, widget):
-        #print(self.journalButton.label)
         if self.openedJournalEAdder == True:
             self.sec1_box.remove(self.diary_writing)
             self.sec1_box.remove(self.overallBox)
@@ -442,6 +456,7 @@ class mm(toga.App):
         self.sec1_box.add(self.dateLabel)
         self.sec1_box.add(self.contentLabel)
         self.sec1_box.add(self.overallLabel)
+
         self.openedJournalEntry = True
 
 
