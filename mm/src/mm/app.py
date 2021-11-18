@@ -125,9 +125,11 @@ class mm(toga.App):
         ######################################################################
         # Section 2 -- Rohan Code Here Start
         ######################################################################
-        # if no, next question: had any thoughts of self harm? -yes, no. if yes/no, 'how do you feel right now' - the same/worse/better. once done say "Thank you for doing your daily check. Sometimes things may seem tough at times, but they will eventually get better, I promise! In the mean time, connect.. or want to call helpline.."
-        # if yes: 'what form of self harm' - physical pain/starvation/excessive exercise/poisioning/others. for any: 'are you proud of your self-harm?' - yes, i deserve/wanted it / no,i wish i didn't. for any: 'does someone know about this?" - yes/no. for any: 'how are you feeling right now?' -the same/worse/better. once done, say : Thank you very much for doing your daily check! Always remember that you are special and of worth! u dont deserve pain, talk to someone close or connnect with people here or call helpline'
-        #after 3 days of no self harm, reward 5 points. after 25 points total, you win prize
+      sec2_box = toga.Box(style=Pack(direction=COLUMN, padding=5))
+        content = toga.WebView()
+        container = toga.ScrollContainer(content=content, horizontal=False)
+        container.vertical = True
+
         question1_prompt = toga.Label(
             'Have you committed any acts of self harm today?',
             style=Pack(padding=(10, 0))
@@ -135,21 +137,130 @@ class mm(toga.App):
 
         question1_yes = toga.Button(
             'Yes',
-        #  on_press= .clear(),
-            style=Pack(padding=(20, 10))
+            style=Pack(padding=(3, 10)),
         )
 
         question1_no = toga.Button(
             'No',
-            #  on_press= .clear(),
-            style=Pack(padding=(40, 10))
+            style=Pack(padding=(3, 10))
         )
 
-        sec2_box = toga.Box(style=Pack(direction=COLUMN, padding=5))
-        section2.add(sec2_box)
-        sec2_box.add(question1_prompt)
-        sec2_box.add(question1_yes)
-        sec2_box.add(question1_no)
+        question2_prompt = toga.Label(
+                'If "No" for question 1...did you have any thoughts of self harm?',
+                style=Pack(padding=(20, 0))
+            )
+        question2_yes = toga.Button(
+                'Yes',
+                style=Pack(padding=(3, 10)),
+            )
+        question2_no = toga.Button(
+                'No',
+                style=Pack(padding=(3, 10)),
+            )
+
+        question3_prompt = toga.Label(
+            'If "Yes" for question 1...what form of self harm?',
+            style=Pack(padding=(20, 0))
+        )
+        question3_opt1 = toga.Button(
+            'Physical pain',
+            style=Pack(padding=(3, 10)),
+        )
+        question3_opt2 = toga.Button(
+            'Starvation',
+            style=Pack(padding=(3, 10)),
+        )
+        question3_opt3 = toga.Button(
+            'Excessive exercise',
+            style=Pack(padding=(3, 10)),
+        )
+        question3_opt4 = toga.Button(
+            'Poisoning',
+            style=Pack(padding=(3, 10)),
+        )
+        question3_opt5 = toga.Button(
+            'Others',
+            style=Pack(padding=(3, 10)),
+        )
+
+        question4_prompt = toga.Label(
+            'If "Yes" for question 1...are you proud of your self harm?',
+            style=Pack(padding=(20, 0))
+        )
+        question4_yes = toga.Button(
+            'Yes, I deserve/wanted it',
+            style=Pack(padding=(3, 10)),
+        )
+        question4_no = toga.Button(
+            "No, I wish I didn't",
+            style=Pack(padding=(3, 10)),
+        )
+
+        question5_prompt = toga.Label(
+            'If "Yes" for question 1...does anyone know you did it?',
+            style=Pack(padding=(20, 10))
+        )
+        question5_yes = toga.Button(
+            'Yes',
+            style=Pack(padding=(3, 10)),
+        )
+        question5_no = toga.Button(
+            "No",
+            style=Pack(padding=(3, 10)),
+        )
+
+        question6_prompt = toga.Label(
+            'How are you feeling right now?',
+            style=Pack(padding=(20, 10))
+        )
+        question6_better = toga.Button(
+            'Better',
+            style=Pack(padding=(3, 10)),
+        )
+        question6_worse = toga.Button(
+            "Worse",
+            style=Pack(padding=(3, 10)),
+        )
+        question6_same = toga.Button(
+            "The same",
+            style=Pack(padding=(3, 10)),
+        )
+
+        ending = toga.MultilineTextInput(style=Pack(padding=(20, 5)), initial=
+            'Thank you for taking your daily check. '
+            'Things may seem tough at times, but they will eventually get better, I promise!'
+            'Always remember that you are special and of worth! You do not deserve any pain, only love!'
+            'Talking to someone close always helps or you can connect with people through the connect tab or call a helpline.',
+            placeholder='Thank you for taking your daily check. '
+            'Things may seem tough at times, but they will eventually get better, I promise!'
+            'Always remember that you are special and of worth! You do not deserve any pain, only love!'
+            'Talking to someone close always helps or you can connect with people through the connect tab or call a helpline.',readonly=True)
+
+      #  section2.add(sec2_box)
+        section2.add(container)
+        section2.add(question1_prompt)
+        section2.add(question1_yes)
+        section2.add(question1_no)
+        section2.add(question2_prompt)
+        section2.add(question2_yes)
+        section2.add(question2_no)
+        section2.add(question3_prompt)
+        section2.add(question3_opt1)
+        section2.add(question3_opt2)
+        section2.add(question3_opt3)
+        section2.add(question3_opt4)
+        section2.add(question3_opt5)
+        section2.add(question4_prompt)
+        section2.add(question4_yes)
+        section2.add(question4_no)
+        section2.add(question5_prompt)
+        section2.add(question5_yes)
+        section2.add(question5_no)
+        section2.add(question6_prompt)
+        section2.add(question6_same)
+        section2.add(question6_worse)
+        section2.add(question6_better)
+        section2.add(ending)
 
         ######################################################################
         # Section 2 -- Rohan Code Here End
