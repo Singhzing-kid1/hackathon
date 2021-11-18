@@ -84,11 +84,14 @@ class mm(toga.App):
 
         journal = db.table('journal')
 
-        titles, content, overall = journalEntriesList(journal.all())
+        self.titles, self.content, self.overall = journalEntriesList(journal.all())
 
-        print(titles)
-        print(content)
-        print(overall)
+        self.openedJournalEAdder = False
+        self.openedJournalEntry = False
+
+        #print(titles)
+        #print(content)
+        #print(overall)
 
         newEntryButton = toga.Button(
             'New Entry',
@@ -99,8 +102,8 @@ class mm(toga.App):
         sec1_box2.add(newEntryButton)
         self.journalButtons = []
 
-        for a,b in enumerate(titles):
-            journalClass = journalEntries(titles[a], self.displayJournalEntry)
+        for a,b in enumerate(self.titles):
+            journalClass = journalEntries(self.titles[a], self.displayJournalEntry)
 
 
             self.journalButtons.append(journalClass.journalEntry())
@@ -228,9 +231,16 @@ class mm(toga.App):
         self.sec1_box.remove(self.diary_writing)
         self.sec1_box.remove(self.overallBox)
         self.sec1_box.remove(self.enter)
+        self.openedJournalEAdder = False
 
 
     def setJournalAdder(self, widget):
+        if self.openedJournalEntry == True:
+            self.sec1_box.remove(self.titleLabel)
+            self.sec1_box.remove(self.contentLabel)
+            self.sec1_box.remove(self.overallLabel)
+            self.openedJournalEntry = False
+
         self.today = date.today()
 
         self.diary_writing = toga.MultilineTextInput(style=Pack(padding=(20, 5)), initial='Enter your thoughts and feelings here', placeholder='Enter your thoughts and feelings here', readonly=False)
@@ -258,12 +268,56 @@ class mm(toga.App):
         self.sec1_box.add(self.diary_writing)
         self.sec1_box.add(self.overallBox)
         self.sec1_box.add(self.enter)
+        self.openedJournalEAdder = True
 
     def displayJournalEntry(self, widget):
         #print(self.journalButton.label)
+        if self.openedJournalEAdder == True:
+            self.sec1_box.remove(self.diary_writing)
+            self.sec1_box.remove(self.overallBox)
+            self.sec1_box.remove(self.enter)
+            self.openedJournalEAdder = False
+
+        if self.openedJournalEntry == True:
+            self.sec1_box.remove(self.titleLabel)
+            self.sec1_box.remove(self.contentLabel)
+            self.sec1_box.remove(self.overallLabel)
+            self.openedJournalEntry = False
+
+        label = ''
         for i in self.journalButtons:
             if i == widget:
-                print('yay' + i.label)
+                label = i.label
+                break
+
+        num = 0
+
+        for a in self.titles:
+            if a == label:
+                break
+            num += 1
+
+        self.titleLabel = toga.Label(
+            label,
+            style=Pack(padding=5)
+        )
+
+        self.contentLabel = toga.Label(
+            self.content[num],
+            style=Pack(padding=5)
+        )
+
+        self.overallLabel = toga.Label(
+            self.overall[num],
+            style=Pack(padding=5)
+        )
+
+        self.sec1_box.add(self.titleLabel)
+        self.sec1_box.add(self.contentLabel)
+        self.sec1_box.add(self.overallLabel)
+        self.openedJournalEntry = True
+
+
 ##############################################################################
 #App Class End
 ##############################################################################
