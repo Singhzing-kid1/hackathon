@@ -262,6 +262,8 @@ class mm(toga.App):
         question6Box.add(question6_worse)
         question6Box.add(question6_same)
 
+        divider = toga.Divider()
+
         enter = toga.Button(
             "Enter",
             style=Pack(padding=(3, 10)),
@@ -283,6 +285,7 @@ class mm(toga.App):
         section2.add(question4Box)
         section2.add(question5Box)
         section2.add(question6Box)
+        section2.add(divider)
         section2.add(enter)
         section2.add(ending)
 
