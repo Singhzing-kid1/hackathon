@@ -7,6 +7,7 @@ from toga.style.pack import COLUMN, ROW
 from tinydb import TinyDB, Query
 from datetime import date
 
+
 db = TinyDB('src/mm/resources/database.json')
 User = Query()
 
@@ -128,13 +129,11 @@ class mm(toga.App):
         ######################################################################
         # Section 2 -- Rohan Code Here Start
         ######################################################################
-        sec2_box = toga.Box(style=Pack(direction=COLUMN, padding=5))
-        content = toga.WebView()
-        container = toga.ScrollContainer(content=content, horizontal=False)
+        container = toga.ScrollContainer(content=section2, horizontal=False)
         container.vertical = True
 
         question1_prompt = toga.Label(
-            'Have you committed any acts of self harm today?',
+            'Q1: Have you committed any acts of self harm today?',
             style=Pack(padding=(10, 0))
         )
 
@@ -148,8 +147,13 @@ class mm(toga.App):
             style=Pack(padding=(3, 10))
         )
 
+        question1Box = toga.Box(style=Pack(direction=COLUMN))
+        question1Box.add(question1_prompt)
+        question1Box.add(question1_yes)
+        question1Box.add(question1_no)
+
         question2_prompt = toga.Label(
-                'If "No" for question 1...did you have any thoughts of self harm?',
+                'Q2: If "No" for question 1...did you have any thoughts of self harm?',
                 style=Pack(padding=(20, 0))
             )
         question2_yes = toga.Button(
@@ -161,8 +165,13 @@ class mm(toga.App):
                 style=Pack(padding=(3, 10)),
             )
 
+        question2Box = toga.Box(style=Pack(direction=COLUMN))
+        question2Box.add(question2_prompt)
+        question2Box.add(question2_yes)
+        question2Box.add(question2_no)
+
         question3_prompt = toga.Label(
-            'If "Yes" for question 1...what form of self harm?',
+            'Q3: If "Yes" for question 1...what form of self harm?',
             style=Pack(padding=(20, 0))
         )
         question3_opt1 = toga.Button(
@@ -186,8 +195,16 @@ class mm(toga.App):
             style=Pack(padding=(3, 10)),
         )
 
+        question3Box = toga.Box(style=Pack(direction=COLUMN))
+        question3Box.add(question3_prompt)
+        question3Box.add(question3_opt1)
+        question3Box.add(question3_opt2)
+        question3Box.add(question3_opt3)
+        question3Box.add(question3_opt4)
+        question3Box.add(question3_opt5)
+
         question4_prompt = toga.Label(
-            'If "Yes" for question 1...are you proud of your self harm?',
+            'Q4: If "Yes" for question 1...are you proud of your self harm?',
             style=Pack(padding=(20, 0))
         )
         question4_yes = toga.Button(
@@ -199,8 +216,13 @@ class mm(toga.App):
             style=Pack(padding=(3, 10)),
         )
 
+        question4Box = toga.Box(style=Pack(direction=COLUMN))
+        question4Box.add(question4_prompt)
+        question4Box.add(question4_yes)
+        question4Box.add(question4_no)
+
         question5_prompt = toga.Label(
-            'If "Yes" for question 1...does anyone know you did it?',
+            'Q5: If "Yes" for question 1...does anyone know you did it?',
             style=Pack(padding=(20, 10))
         )
         question5_yes = toga.Button(
@@ -212,8 +234,13 @@ class mm(toga.App):
             style=Pack(padding=(3, 10)),
         )
 
+        question5Box = toga.Box(style=Pack(direction=COLUMN))
+        question5Box.add(question5_prompt)
+        question5Box.add(question5_yes)
+        question5Box.add(question5_no)
+
         question6_prompt = toga.Label(
-            'How are you feeling right now?',
+            'Q6: How are you feeling right now?',
             style=Pack(padding=(20, 10))
         )
         question6_better = toga.Button(
@@ -229,6 +256,12 @@ class mm(toga.App):
             style=Pack(padding=(3, 10)),
         )
 
+        question6Box = toga.Box(style=Pack(direction=COLUMN))
+        question6Box.add(question6_prompt)
+        question6Box.add(question6_better)
+        question6Box.add(question6_worse)
+        question6Box.add(question6_same)
+
         ending = toga.MultilineTextInput(style=Pack(padding=(20, 5)), initial=
             'Thank you for taking your daily check. '
             'Things may seem tough at times, but they will eventually get better, I promise!'
@@ -240,29 +273,12 @@ class mm(toga.App):
             'Talking to someone close always helps or you can connect with people through the connect tab or call a helpline.',readonly=True)
 
       #  section2.add(sec2_box)
-        section2.add(container)
-        section2.add(question1_prompt)
-        section2.add(question1_yes)
-        section2.add(question1_no)
-        section2.add(question2_prompt)
-        section2.add(question2_yes)
-        section2.add(question2_no)
-        section2.add(question3_prompt)
-        section2.add(question3_opt1)
-        section2.add(question3_opt2)
-        section2.add(question3_opt3)
-        section2.add(question3_opt4)
-        section2.add(question3_opt5)
-        section2.add(question4_prompt)
-        section2.add(question4_yes)
-        section2.add(question4_no)
-        section2.add(question5_prompt)
-        section2.add(question5_yes)
-        section2.add(question5_no)
-        section2.add(question6_prompt)
-        section2.add(question6_same)
-        section2.add(question6_worse)
-        section2.add(question6_better)
+        section2.add(question1Box)
+        section2.add(question2Box)
+        section2.add(question3Box)
+        section2.add(question4Box)
+        section2.add(question5Box)
+        section2.add(question6Box)
         section2.add(ending)
 
         ######################################################################
@@ -331,7 +347,7 @@ class mm(toga.App):
         section1Main.content = [section1L, section1R]
 
         main_box.add('Checkin/journaling', section1Main)
-        main_box.add('hurtmenot', section2)
+        main_box.add('hurtmenot', container)
         main_box.add('connect', section3)
         main_box.add('helplines', section4)
 
