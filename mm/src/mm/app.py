@@ -458,9 +458,11 @@ class mm(toga.App):
             style=Pack(padding=5)
         )
 
-        self.contentLabel = toga.Label(
-            self.content[num],
-            style=Pack(padding=5)
+        self.contentLabel = toga.MultilineTextInput(
+            initial = self.content[num],
+            placeholder = self.content[num],
+            style=Pack(padding=5),
+            readonly=True
         )
 
         self.overallLabel = toga.Label(
