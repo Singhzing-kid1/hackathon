@@ -28,12 +28,26 @@ An app that gives a mental health check to see how you are feeling. It also incl
 
 ## Run the source code:
 
-### Windows:
+### Windows 10:
 
-- Clone the repository
+- clone the repository
 - cd to the repository on your computer
 - run the command `python -m venv Venv`
 - run the command `Venv\Scripts\activate`
 - run the command `python -m pip install -r requirments.txt`
-- cd into the app folder
-- run the command `briefcase dev`
+- cd into the app folder using `cd mm`
+- run the app using `briefcase run`
+
+### MacOS:
+
+- clone the repository
+- cd to the repository folder
+- run the command `python3.8 -m pip install --user --upgrade pip`
+- run the command `python3.8 -m pip install --user virtualenv`
+- run the command `python3.8 -m venv Venv`
+- run the command `source Venv/bin/activate`
+- run the command `python3.8 -m pip install -r requirments.txt`
+- cd into the app folder using `cd mm`
+- run the app using `briefcase run`
+
+### Linux:

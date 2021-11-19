@@ -1,0 +1,5 @@
+[paths]
+app_path = "mm.app/Contents/Resources/app"
+app_packages_path = "mm.app/Contents/Resources/app_packages"
+support_path = "mm.app/Contents/Resources/Support"
+icon = "mm.app/Contents/Resources/mm.icns"
