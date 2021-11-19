@@ -264,7 +264,7 @@ class mm(toga.App):
 
         enter = toga.Button(
             "Enter",
-            style=Pact(padding=(3, 10)),
+            style=Pack(padding=(3, 10)),
         )
         ending = toga.MultilineTextInput(style=Pack(padding=(20, 5)), initial=
             'Thank you for taking your daily check. '
