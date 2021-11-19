@@ -49,5 +49,3 @@ An app that gives a mental health check to see how you are feeling. It also incl
 - run the command `python3.8 -m pip install -r requirments.txt`
 - cd into the app folder using `cd mm`
 - run the app using `briefcase run`
-
-### Linux:
