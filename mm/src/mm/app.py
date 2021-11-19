@@ -223,7 +223,7 @@ class mm(toga.App):
 
         question5_prompt = toga.Label(
             'Q5: If "Yes" for question 1...does anyone know you did it?',
-            style=Pack(padding=(20, 10))
+            style=Pack(padding=(20, 0))
         )
         question5_yes = toga.Button(
             'Yes',
@@ -241,7 +241,7 @@ class mm(toga.App):
 
         question6_prompt = toga.Label(
             'Q6: How are you feeling right now?',
-            style=Pack(padding=(20, 10))
+            style=Pack(padding=(20, 0))
         )
         question6_better = toga.Button(
             'Better',
