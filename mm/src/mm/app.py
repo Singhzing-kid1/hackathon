@@ -262,6 +262,10 @@ class mm(toga.App):
         question6Box.add(question6_worse)
         question6Box.add(question6_same)
 
+        enter = toga.Button(
+            "Enter",
+            style=Pact(padding=(3, 10)),
+        )
         ending = toga.MultilineTextInput(style=Pack(padding=(20, 5)), initial=
             'Thank you for taking your daily check. '
             'Things may seem tough at times, but they will eventually get better, I promise!'
@@ -279,6 +283,7 @@ class mm(toga.App):
         section2.add(question4Box)
         section2.add(question5Box)
         section2.add(question6Box)
+        section2.add(enter)
         section2.add(ending)
 
         ######################################################################
