@@ -8,7 +8,7 @@ author = 'Veer Singh'
 author_email = "obiwan@veersingh.ca"
 
 [tool.briefcase.app.mm]
-formal_name = "mm"
+formal_name = "mental minutes"
 description = "hackathon project"
 icon = "src/mm/resources/mm"
 sources = ['src/mm']
