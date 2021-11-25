@@ -36,7 +36,7 @@ An app that gives a mental health check to see how you are feeling. It also incl
 - run the command `Venv\Scripts\activate`
 - run the command `python -m pip install -r requirments.txt`
 - cd into the app folder using `cd mm`
-- run the app using `briefcase run`
+- run the app using `briefcase dev`
 
 ### MacOS:
 
@@ -48,4 +48,4 @@ An app that gives a mental health check to see how you are feeling. It also incl
 - run the command `source Venv/bin/activate`
 - run the command `python3.8 -m pip install -r requirments.txt`
 - cd into the app folder using `cd mm`
-- run the app using `briefcase run`
+- run the app using `briefcase dev`
